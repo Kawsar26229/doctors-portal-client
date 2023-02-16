@@ -6,7 +6,7 @@ const Banner = () => {
   return (
     <div className="hero bgImage">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <img src={chair} className="rounded-lg w-1/2 shadow-2xl" />
+        <img src={chair} className="rounded-lg lg:w-1/2 shadow-2xl" />
         <div>
           <h1 className="text-5xl font-bold textShadow">
             Your New Smile Starts Here
