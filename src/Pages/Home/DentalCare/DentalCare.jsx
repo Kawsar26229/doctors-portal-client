@@ -1,5 +1,6 @@
 import React from 'react';
 import treatment from '../../../assets/images/treatment.png';
+import PrimaryButton from '../../../utilities/Button/PrimaryButton/PrimaryButton';
 
 const DentalCare = () => {
   return (
@@ -22,9 +23,7 @@ const DentalCare = () => {
           </p>
         </React.Fragment>
         <div className="card-actions justify-start py-3">
-          <button className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white">
-            Get Started
-          </button>
+          <PrimaryButton>Get Started</PrimaryButton>
         </div>
       </div>
     </div>
