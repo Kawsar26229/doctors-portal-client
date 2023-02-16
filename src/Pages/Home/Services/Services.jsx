@@ -21,7 +21,7 @@ const Services = () => {
       icon: cavity,
     },
     {
-      id: 1,
+      id: 3,
       name: 'Teeth Whitening',
       description:
         'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Recusandae sed id dicta rerum ut veritatis quasi illum exercitationem at quaerat.',
