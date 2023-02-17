@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, googleSignIn } = useContext(AuthContext);
   const [loginError, setLoginError] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
@@ -18,6 +18,18 @@ const Login = () => {
   const handleLogin = (data) => {
     setLoginError('');
     signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        toast.success('Successfully Logged In');
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        setLoginError(error.message);
+      });
+  };
+  const signInWithGoogle = () => {
+    googleSignIn()
       .then((result) => {
         const user = result.user;
         toast.success('Successfully Logged In');
@@ -89,7 +101,10 @@ const Login = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full uppercase">
+        <button
+          className="btn btn-outline w-full uppercase"
+          onClick={signInWithGoogle}
+        >
           Continue with google
         </button>
       </div>

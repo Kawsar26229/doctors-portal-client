@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
 
 const SignUp = () => {
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
   const [signUpError, setSignUpError] = useState('');
   const {
     register,
@@ -27,6 +27,17 @@ const SignUp = () => {
       })
       .catch((error) => {
         console.log(error);
+        setSignUpError(error.message);
+      });
+  };
+  const signInWithGoogle = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        toast.success('User Created Successfully');
+      })
+      .catch((error) => {
         setSignUpError(error.message);
       });
   };
@@ -118,7 +129,10 @@ const SignUp = () => {
           </Link>
         </p>
         <div className="divider">OR</div>
-        <button className="btn btn-outline w-full uppercase">
+        <button
+          className="btn btn-outline w-full uppercase"
+          onClick={signInWithGoogle}
+        >
           Continue with google
         </button>
       </div>
