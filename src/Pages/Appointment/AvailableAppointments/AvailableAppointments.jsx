@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { format } from 'date-fns';
 import React, { useState } from 'react';
+import { Toaster } from 'react-hot-toast';
 import Loading from '../../Shared/Loading/Loading';
 import BookingModal from '../BookingModal/BookingModal';
 import AppointmentOptions from './AppointmentOptions';
@@ -29,6 +30,7 @@ const AvailableAppointments = ({ selectedDate }) => {
 
   return (
     <section className="mt-16">
+      <Toaster position="top-center" reverseOrder={false} />
       <p className="text-center text-secondary font-bold">
         Available Appointments on {format(selectedDate, 'PP')}
       </p>
