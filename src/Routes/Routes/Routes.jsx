@@ -57,11 +57,7 @@ export const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: (
-      <PrivateRoute>
-        <DashboardLayout></DashboardLayout>
-      </PrivateRoute>
-    ),
+    element: <DashboardLayout></DashboardLayout>,
     errorElement: <DisplayError></DisplayError>,
     children: [
       {
@@ -95,11 +91,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/dashboard/payment/:id',
-        element: (
-          <AdminRoute>
-            <Payment></Payment>
-          </AdminRoute>
-        ),
+        element: <Payment></Payment>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/bookings/${params.id}`),
       },
