@@ -3,11 +3,19 @@ import { useForm } from 'react-hook-form';
 import { toast, Toaster } from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const SignUp = () => {
   const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
   const [signUpError, setSignUpError] = useState('');
+  const [createUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createUserEmail);
   const navigate = useNavigate();
+
+  if (token) {
+    navigate('/');
+  }
+
   const {
     register,
     formState: { errors },
@@ -23,7 +31,7 @@ const SignUp = () => {
         };
         updateUser(userInfo)
           .then(() => {
-            navigate('/');
+            saveUser(data.name, data.email);
           })
           .catch((error) => console.log(error));
         toast.success('User Created Successfully');
@@ -33,6 +41,22 @@ const SignUp = () => {
         setSignUpError(error.message);
       });
   };
+
+  const saveUser = (name, email) => {
+    const user = { name, email };
+    fetch('http://localhost:5000/users', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setCreatedUserEmail(email);
+      });
+  };
+
   const signInWithGoogle = () => {
     googleSignIn()
       .then((result) => {
