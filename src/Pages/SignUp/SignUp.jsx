@@ -72,7 +72,7 @@ const SignUp = () => {
     <div className="h-[880px] flex justify-center items-center">
       <Toaster position="top-center" reverseOrder={false} />
       <div className="w-96 p-7">
-        <h2 className="text-xl text-center font-bold">Login</h2>
+        <h2 className="text-xl text-center font-bold">Sign Up</h2>
         <form onSubmit={handleSubmit(handleSignUp)}>
           <div className="form-control w-full max-w-xs">
             <label className="label">
